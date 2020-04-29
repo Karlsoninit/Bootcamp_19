@@ -1,0 +1,24 @@
+.title {
+  font-size: 30px;
+  color: #fff;
+}
+
+.cardContainer {
+  border: 2px solid red;
+  margin-bottom: 20px;
+  width: 400px;
+  border-radius: 20px;
+}
+
+.isActive {
+  composes: cardContainer;
+  border: 2px solid green;
+}
+
+.imageContainer {
+  width: 400px;
+  height: 100px;
+  background-size: cover;
+  text-align: center;
+  background-repeat: no-repeat;
+}
