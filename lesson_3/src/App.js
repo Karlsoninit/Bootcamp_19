@@ -19,11 +19,11 @@ class App extends Component {
     });
   };
 
-  decrement = () => {
+  decrement = (param) => {
     if (this.state.count <= 0) {
       return;
     }
-    this.setState((prev) => ({ count: prev.count - 1 }));
+    this.setState((prev) => ({ count: prev.count - param }));
   };
 
   toggle = () => {

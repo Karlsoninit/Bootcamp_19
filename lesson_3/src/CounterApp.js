@@ -14,6 +14,6 @@ export const CounterApp = ({ image, decrement, increment, count }) => (
   <Counter image={image}>
     <h2>{count}</h2>
     <button onClick={increment}>increment</button>
-    <button onClick={decrement}>decrement</button>
+    <button onClick={() => decrement(5)}>decrement</button>
   </Counter>
 );
