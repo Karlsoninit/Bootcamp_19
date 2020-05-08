@@ -1,21 +1,23 @@
 import React, { Component } from "react";
-import axios from "axios";
+// import { Article } from "../components/article/Article";
+import { fetchNews } from "../services/fetcher";
+import queryString from "query-string";
 
-export class ArticlePage extends Component {
+class Article extends Component {
   state = {
     article: null,
   };
   componentDidMount() {
-    this.fetchNews();
+    this.getArticle();
   }
 
-  fetchNews = async () => {
+  getArticle = async () => {
     try {
-      const news = await axios.get(
-        "http://newsapi.org/v2/everything?q=bitcoin&from=2020-04-07&sortBy=publishedAt&apiKey=ed5ebee752754cf7a93918ae83acba6f"
-      );
-
-      const newsKey = news.data.articles.find(
+      const parsed = queryString.parse(this.props.location.search);
+      console.log(parsed);
+      const news = await fetchNews(parsed.qwery);
+      console.log("news", news);
+      const newsKey = news.find(
         (article) => article.publishedAt === this.props.match.params.article
       );
 
@@ -33,7 +35,16 @@ export class ArticlePage extends Component {
           <h2>{article.author}</h2>
           <p>{article.description}</p>
           <img style={{ width: 600 }} alt="news" src={article.urlToImage} />
-          <button onClick={() => this.props.history.push("/news")}>
+          <button
+            onClick={() =>
+              this.props.history.push("/news", {
+                qwerySearchString: queryString.parse(
+                  this.props.location.search
+                ),
+                news: this.props.location.state,
+              })
+            }
+          >
             show all news
           </button>
         </div>
@@ -41,3 +52,8 @@ export class ArticlePage extends Component {
     );
   }
 }
+
+export const ArticlePage = (props) => {
+  console.log("props ArticlePage", props);
+  return <Article {...props} />;
+};

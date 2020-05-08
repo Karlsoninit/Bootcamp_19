@@ -2,42 +2,22 @@ import React from "react";
 
 import { NavLink } from "react-router-dom";
 
-const Nav = () => (
+const Nav = ({ navOptions }) => (
   <ul>
-    <li>
-      <NavLink
-        activeStyle={{
-          fontWeight: "bold",
-          color: "red",
-        }}
-        exact
-        to="/"
-      >
-        HOME
-      </NavLink>
-    </li>
-    <li>
-      <NavLink
-        activeStyle={{
-          fontWeight: "bold",
-          color: "red",
-        }}
-        to="/profile"
-      >
-        PROFILE
-      </NavLink>
-    </li>
-    <li>
-      <NavLink
-        activeStyle={{
-          fontWeight: "bold",
-          color: "red",
-        }}
-        to="/news"
-      >
-        News
-      </NavLink>
-    </li>
+    {navOptions.map((nav) => (
+      <li>
+        <NavLink
+          activeStyle={{
+            fontWeight: "bold",
+            color: "red",
+          }}
+          exact
+          to={nav === "home" ? "/" : `/${nav}`}
+        >
+          {nav}
+        </NavLink>
+      </li>
+    ))}
   </ul>
 );
 

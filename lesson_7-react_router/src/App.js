@@ -9,11 +9,20 @@ import { ArticlePage } from "./pages/ArticlePage";
 
 const apiKey = "ed5ebee752754cf7a93918ae83acba6f";
 
-function App(props) {
-  console.log("props App", props);
+const config = {
+  news: {
+    path: "/news",
+    pathName: "news",
+    homeLabel: "NEWS",
+  },
+};
+
+const nav = ["home", config.news.homeLabel, "profile"];
+
+function App() {
   return (
     <>
-      <Nav />
+      <Nav navOptions={nav} />
       <Switch>
         <Route
           exact
@@ -26,10 +35,10 @@ function App(props) {
         />
         <Route
           exact
-          path="/news"
+          path={config.news.path}
           render={(props) => <NewsPage {...props} uniqueKey={apiKey} />}
         />
-        <Route path="/news/:article" component={ArticlePage} />
+        <Route path={`${config.news.path}/:article`} component={ArticlePage} />
         <Route component={ErrorPage} />
       </Switch>
     </>
