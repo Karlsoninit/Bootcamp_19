@@ -14,9 +14,9 @@ class Article extends Component {
   getArticle = async () => {
     try {
       const parsed = queryString.parse(this.props.location.search);
-      console.log(parsed);
+      console.log("parsed", parsed);
       const news = await fetchNews(parsed.qwery);
-      console.log("news", news);
+
       const newsKey = news.find(
         (article) => article.publishedAt === this.props.match.params.article
       );

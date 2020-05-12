@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { fetchNews } from "../services/fetcher";
 
-export class NewsPage extends Component {
+class NewsPage extends Component {
   state = {
     news: [],
     message: null,
@@ -31,7 +31,6 @@ export class NewsPage extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.qwery !== this.state.qwery) {
-      console.log("ok i searching :", this.state.qwery);
       this.updateNews();
     }
   }
@@ -43,8 +42,6 @@ export class NewsPage extends Component {
   };
 
   render() {
-    console.log("render");
-    console.log("state ----! ", this.props);
     const { news, qwery } = this.state;
     return (
       news.length && (
@@ -78,3 +75,5 @@ export class NewsPage extends Component {
     );
   }
 }
+
+export default NewsPage;
