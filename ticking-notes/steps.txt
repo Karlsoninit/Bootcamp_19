@@ -1,0 +1,2 @@
+1. усатновить firebase
+2. создать firebase config
