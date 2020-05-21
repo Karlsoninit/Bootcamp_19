@@ -1,13 +1,19 @@
-import React from "react";
-import { useSelector } from "react-redux";
-const israel = 1000;
+import React, { useContext } from "react";
+import { LayaltyProgramContext } from "../../context/context";
 
 const Travel = () => {
-  const { balance } = useSelector((state) => state);
+  const { bonus, countrys } = useContext(LayaltyProgramContext);
+  console.log("countrys", countrys);
   return (
     <>
-      <h2>your balance: {balance}</h2>
-      <button>buy</button>
+      <h2>choose travel</h2>
+      <p>bonus: {bonus}</p>
+
+      <ul>
+        {countrys.map(({ city }) => (
+          <li>{city}</li>
+        ))}
+      </ul>
     </>
   );
 };

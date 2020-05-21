@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import {
   balanceIncrementAction,
   balanceDecrementAction,
@@ -7,6 +7,7 @@ import {
   loyaltyProgram,
 } from "./redux/bank/bankAction";
 import Travel from "./components/travel/Travel";
+import { LayaltyProgram } from "./context/context";
 
 const bonus = {
   bronse: {
@@ -37,58 +38,61 @@ const bonusPlus = (summ) => {
 
 const replenishedCard = 999;
 
-function App({
-  balance,
-  name,
-  balanceIncrementAction,
-  userInitAction,
-  loyaltyProgram,
-  balanceDecrementAction,
-}) {
+function App() {
+  const dispatch = useDispatch();
+
+  const {
+    balance,
+    user: { name },
+  } = useSelector((state) => state);
+
   useEffect(() => {
-    userInitAction();
+    // (async () => {})();
+
+    dispatch(userInitAction());
   }, []);
 
   const decrement = () => {
     const buyShop = Math.floor(Math.random() * 10000);
     console.log(buyShop);
-    balanceDecrementAction(buyShop);
+    dispatch(balanceDecrementAction(buyShop));
     const countbonus = bonusPlus(buyShop);
     if (balance > 0) {
-      loyaltyProgram(countbonus);
+      dispatch(loyaltyProgram(countbonus));
     }
   };
 
   return (
     <>
-      <button onClick={() => balanceIncrementAction(replenishedCard)}>
+      <button onClick={() => dispatch(balanceIncrementAction(replenishedCard))}>
         PLUS
       </button>
       <p>client {name}</p>
       <h2>balance: {balance}</h2>
 
       <button onClick={decrement}>MINUS</button>
-      <Travel />
+      <LayaltyProgram>
+        <Travel />
+      </LayaltyProgram>
     </>
   );
 }
 
-const mapStateToProps = (state) => {
-  console.log("state", state);
-  return {
-    balance: state.balance,
-    name: state.user.name,
-  };
-};
+// const mapStateToProps = (state) => {
+//   console.log("state", state);
+//   return {
+//     balance: state.balance,
+//     name: state.user.name,
+//   };
+// };
 
-const mapDispatchToProps = {
-  balanceIncrementAction,
-  userInitAction,
-  loyaltyProgram,
-  balanceDecrementAction,
-};
+// const mapDispatchToProps = {
+//   balanceIncrementAction,
+//   userInitAction,
+//   loyaltyProgram,
+//   balanceDecrementAction,
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+// export default connect(mapStateToProps, mapDispatchToProps)(App);
 
-// dispatch({type: 'balance_plus',  payload: 100})
-// balanceIncrementAction(1000);
+export default App;
