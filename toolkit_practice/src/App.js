@@ -4,8 +4,6 @@ import { BirthdayPage } from "./pages/BirthdayPage";
 import { PlanningPage } from "./pages/PlanningPage";
 import { FriendsWishesPage } from "./pages/FriendsWishesPage";
 import { BirthdayBoyPage } from "./pages/BirthdayBoyPage";
-// import {} from "./pages/BuyPage";
-// import {} from "./pages/TravelPage";
 
 function App() {
   return (
@@ -26,11 +24,3 @@ function App() {
 }
 
 export default App;
-
-// /planning
-
-// /planning/birthday/
-// /planning/birthday/:friends/wishes
-
-// /planning/travel
-// /planning/buy

@@ -7,10 +7,6 @@ export const BirthdayBoyPage = (props) => {
   }, []);
 
   const getCurrentUser = async () => {
-    // await firestore
-    //   .collection("birthday")
-    //   .doc("0Zab7UdbTmsTJrmUUkDx")
-    //   .onSnapshot((doc) => console.log(doc.data()));
     await firestore
       .collection("birthday")
       .doc("0Zab7UdbTmsTJrmUUkDx")
