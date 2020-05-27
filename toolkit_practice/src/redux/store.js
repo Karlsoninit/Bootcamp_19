@@ -9,7 +9,10 @@ const planningSlice = createSlice({
         birthdayDate: null,
       },
     },
-    birthday: [],
+    birthday: {
+      allBirthdayBoys: [],
+      chooseBirthdayBoy: [],
+    },
     travel: {},
     buy: {},
   },
@@ -17,7 +20,11 @@ const planningSlice = createSlice({
     getUser: (state, { payload }) => ({ ...state, user: payload.userInfo }),
     getBirthdayBoys: (state, { payload }) => ({
       ...state,
-      birthday: payload.birthdayBoys,
+      birthday: { ...state.birthday, allBirthdayBoys: payload.birthdayBoys },
+    }),
+    getFriendWishes: (state, { payload }) => ({
+      ...state,
+      birthday: { ...state.birthday, chooseBirthdayBoy: payload.birthdayBoys },
     }),
   },
 });
