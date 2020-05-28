@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
-import { Route, Switch, Link, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { BirthdayPage } from "./pages/BirthdayPage";
 import { PlanningPage } from "./pages/PlanningPage";
 import { FriendWishesPage } from "./pages/FriendWishesPage";
 import { BirthdayBoyPage } from "./pages/BirthdayBoyPage";
-import { actions } from "./redux/store";
+import { userSlice } from "./redux/reducers/userReducer";
+
 const createUser = {
   nickName: "Bob",
   info: {
@@ -16,7 +17,7 @@ const createUser = {
 function App(props) {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(actions.getUser({ userInfo: createUser }));
+    dispatch(userSlice.actions.getUser({ userInfo: createUser }));
   }, []);
   return (
     <>
