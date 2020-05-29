@@ -24,6 +24,7 @@ export const useRoute = (isAuthentication) => {
       <Route path="/birthday/birthdayBoy" component={BirthdayBoyPage} />
       <Route path="/birthday/:friend" component={FriendWishesPage} />
       <Route path="/birthday" component={BirthdayPage} />
+      <Redirect to="/" />
     </Switch>
   );
 };

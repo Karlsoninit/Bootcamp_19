@@ -6,6 +6,7 @@ import { signUpUser } from "../../redux/auth/authOperations";
 const initialState = {
   email: null,
   password: null,
+  displayName: null,
 };
 
 const Register = () => {
@@ -23,6 +24,7 @@ const Register = () => {
 
   return (
     <form onSubmit={handleSubmit}>
+      <input placeholder="text" name="displayName" onChange={handleChange} />
       <input placeholder="email" name="email" onChange={handleChange} />
       <input placeholder="password" name="password" onChange={handleChange} />
       <button type="submit">sign up</button>

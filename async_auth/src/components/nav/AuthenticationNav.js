@@ -1,7 +1,10 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-
+import { auth } from "../../firebase/config";
 export const AuthenticationNav = () => {
+  const signOut = () => {
+    auth.signOut();
+  };
   const history = useHistory();
   return (
     <>
@@ -35,6 +38,7 @@ export const AuthenticationNav = () => {
       >
         Buy
       </button>
+      <button onClick={signOut}>sign out</button>
     </>
   );
 };
